@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Program Weton</title>
+</head>
+
+<body>
+    <div id="pbcekprimbon">
+        <h2 class="pbh2">Hitung Weton</h2>
+        <h3 class="pbh3">Tanggal Lahir</h3>
+        <input id="pbtanggal" size="2" placeholder="tanggal">
+        <select id="pbbulan">
+      <option selected="" value="0">Januari</option>
+      <option value="1">Februari</option>
+      <option value="2">Maret</option>
+      <option value="3">April</option>
+      <option value="4">Mei</option>
+      <option value="5">Juni</option>
+      <option value="6">Juli</option>
+      <option value="7">Agustus</option>
+      <option value="8">September</option>
+      <option value="9">Oktober</option>
+      <option value="10">Nopember</option>
+      <option value="11">Desember</option></select>
+        <input id="pbtahun" size="4" placeholder="tahun"></td><br>
+        <button id="pbhitung">Hitung</button>
+        <div id="pbhasil">
+        </div>
+    </div>
+    <div>
+        <script>
+            var __tanggal = document.getElementById("pbtanggal");
+            var __bulan = document.getElementById("pbbulan");
+            var __tahun = document.getElementById("pbtahun");
+            var __hasil = document.getElementById("pbhasil");
+            var bthasil = document.getElementById("pbhitung");
+
+            bthasil.addEventListener("click", function() {
+                var tanggalLahir = new Date(__tahun.value, __bulan.selectedIndex, __tanggal.value);
+                __hasil.innerHTML = "Weton Kamu " + hitunghari(tanggalLahir) + " " + hitungpasaran(tanggalLahir);
+            });
+
+            function hitunghari(_tanggal) {
+                _hari = _tanggal.getDay();
+
+                switch (_hari) {
+                    case 0:
+                        return "Minggu";
+                    case 1:
+                        return "Senin";
+                    case 2:
+                        return "Selasa";
+                    case 3:
+                        return "Rabu";
+                    case 4:
+                        return "Kamis";
+                    case 5:
+                        return "Jum'at";
+                    case 6:
+                        return "Sabtu";
+                    default:
+                        return "";
+                }
+            }
+
+            function hitungpasaran(_tanggal) {
+                var awal = new Date(70, 0, 2);
+                pembagian = ((_tanggal.getTime() - awal.getTime()) + 86400000) / 432000000;
+                sisa = Math.round((pembagian - Math.floor(pembagian)) * 10) / 2;
+
+                switch (sisa) {
+                    case 0:
+                        return "Wage";
+                    case 1:
+                        return "Kliwon";
+                    case 2:
+                        return "Legi";
+                    case 3:
+                        return "Pahing";
+                    case 4:
+                        return "Pon";
+                    default:
+                        return "";
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>
